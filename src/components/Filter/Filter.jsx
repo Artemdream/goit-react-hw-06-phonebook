@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setFilterContacts } from 'redux/filterSlice';
-import { getFiltered } from 'redux/selectors';
 import './Filter.css';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(getFiltered);
 
   const getVisibleContacts = ({ target: { value } }) => {
     dispatch(setFilterContacts(value));
@@ -15,12 +13,7 @@ export const Filter = () => {
   return (
     <label>
       <p>Find contacts by name</p>
-      <input
-        type="text"
-        name="filter"
-        value={filter}
-        onChange={getVisibleContacts}
-      ></input>
+      <input type="text" name="filter" onChange={getVisibleContacts}></input>
     </label>
   );
 };
